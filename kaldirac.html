@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Contract Hesaplayıcı</title>
+</head>
+<body>
+	<h1>Contract Hesaplayıcı</h1>
+	<form>
+		<label for="entry">Entry:</label>
+		<input type="number" id="entry" name="entry"><br>
+
+		<label for="stop">Stop:</label>
+		<input type="number" id="stop" name="stop"><br>
+
+		<label for="maliyet">Maliyet:</label>
+		<input type="number" id="maliyet" name="maliyet"><br>
+
+		<label for="risk">Risk:</label>
+		<input type="number" id="risk" name="risk"><br>
+
+		<input type="button" value="Hesapla" onclick="hesapla()"><br>
+
+		<label for="result">Sonuç:</label>
+		<input type="number" id="result" name="result" readonly>
+	</form>
+
+	<script>
+		function hesapla() {
+			var entry = parseFloat(document.getElementById("entry").value);
+			var stop = parseFloat(document.getElementById("stop").value);
+			var maliyet = parseFloat(document.getElementById("maliyet").value);
+			var risk = parseFloat(document.getElementById("risk").value);
+
+			var contract = 0;
+
+			if (entry > stop) {
+				contract = risk / (entry - stop);
+			} else if (entry < stop) {
+				contract = risk / (stop - entry);
+			}
+
+			var sonuc = (contract * entry) / maliyet;
+
+			document.getElementById("result").value = sonuc.toFixed(2);
+		}
+	</script>
+</body>
+</html>
